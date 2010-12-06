@@ -1,0 +1,5 @@
+2009-06-07 Edgar Grimberg
+	* Added FSF copyright (copyleft?)
+2009-06-04 Edgar Grimberg
+	* added environmental vars
+	* the ETH MPC8313E_RDB driver files should contain just basic information 

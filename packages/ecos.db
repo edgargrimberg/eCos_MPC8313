@@ -1,0 +1,110 @@
+### ####ECOSGPLCOPYRIGHTBEGIN####                                            
+## -------------------------------------------                              
+## This file is part of eCos, the Embedded Configurable Operating System.   
+## Copyright (C) 1998, 1999, 2000, 2001, 2002, 2009 Free Software Foundation, Inc.
+##
+## eCos is free software; you can redistribute it and/or modify it under    
+## the terms of the GNU General Public License as published by the Free     
+## Software Foundation; either version 2 or (at your option) any later      
+## version.                                                                 
+##
+## eCos is distributed in the hope that it will be useful, but WITHOUT      
+## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or    
+## FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License    
+## for more details.                                                        
+##
+## You should have received a copy of the GNU General Public License        
+## along with eCos; if not, write to the Free Software Foundation, Inc.,    
+## 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.            
+##
+## As a special exception, if other files instantiate templates or use      
+## macros or inline functions from this file, or you compile this file      
+## and link it with other works to produce a work based on this file,       
+## this file does not by itself cause the resulting work to be covered by   
+## the GNU General Public License. However the source code for this file    
+## must still be made available in accordance with section (3) of the GNU   
+## General Public License v2.                                               
+##
+## This exception does not invalidate any other reasons why a work based    
+## on this file might be covered by the GNU General Public License.         
+## -------------------------------------------                              
+## ####ECOSGPLCOPYRIGHTEND####                                              
+
+package CYGPKG_HAL_POWERPC_MPC83XX {
+	alias		{ "PowerPC MPC83XX variant HAL" hal_mpc83xx }
+	directory	hal/powerpc/mpc83xx/
+	script		hal_powerpc_mpc83xx.cdl
+	hardware
+        description "
+           The PowerPC MPC83XX PowerQUICCII PRO variant HAL package provides 
+           support for this processor variant. It is also necessary to
+           select a specific target platform HAL package."
+}
+
+package CYGPKG_DEVS_ETH_POWERPC_TSEC {
+	alias 		{ "TSEC ethernet driver" fcc_eth_driver }
+	directory	devs/eth/powerpc/quicc2pro
+	script		tsec_eth_drivers.cdl
+	hardware
+    description     "TSEC ethernet driver for PowerPC MPC83xx based boards (QUICC2Pro)."
+}
+
+package CYGPKG_HAL_POWERPC {
+	alias		{ "PowerPC common HAL" hal_powerpc powerpc_hal powerpc_arch_hal }
+	directory	hal/powerpc/arch
+	script		hal_powerpc.cdl
+	hardware
+	description "
+ 	    The PowerPC architecture HAL package provides generic
+ 	    support for this processor architecture. It is also necessary to
+    	    select a CPU variant and a specific target platform HAL
+    	    package."
+}
+
+target MPC8313E_RDB {
+	alias { "MPC8313E Reference Design Board" mpc8313e_rdb }
+	packages { 	
+				CYGPKG_HAL_POWERPC
+				CYGPKG_HAL_POWERPC_MPC83XX
+				CYGPKG_HAL_POWERPC_MPC8313E_RDB
+				CYGPKG_IO_SERIAL_POWERPC_QUICC2PRO
+        }
+	description "
+		MPC8318E RDB"
+}
+
+package CYGPKG_HAL_POWERPC_MPC8313E_RDB {
+	alias		{ "MPC8313E_RDB PPC8313 board" hal_powerpc_mpc8313e_rdb powerpc_mpc8313e_rdb_hal }
+	directory	hal/powerpc/mpc8313e_rdb
+	script		hal_powerpc_mpc8313e_rdb.cdl
+	hardware
+        description "
+            The mpc8313e_rdb HAL package provides the support needed to run
+            eCos on a mpc8313e_rdb board equipped with a PowerPC processor."
+}
+package CYGPKG_DEVS_ETH_POWERPC_MPC8313E_RDB {
+	alias 		{ "MPC8313E_RDB ethernet driver" mpc8313e_rdb_eth_driver }
+	hardware
+	directory	devs/eth/powerpc/mpc8313e_rdb
+	script		mpc8313e_rdb.cdl
+        description     "Ethernet driver specifics for MPC8313E_RDB (MPC8313) based boards."
+}
+
+package CYGPKG_DEVS_FLASH_INTEL_28FXXX {
+	alias 		{ "Generic FLASH memory support for Intel 28Fxxx Flash parts" flashfile }
+	directory	devs/flash/intel/28fxxx
+	script		flash_intel_28fxxx.cdl
+	hardware
+        description "
+           This package contains generic hardware support for Intel
+	   Flash memory devices."
+}
+
+package CYGPKG_IO_SERIAL_POWERPC_QUICC2PRO {
+    alias             { "PowerPC MPC83XX (QUICC-II Pro) serial device drivers"
+                        devs_serial_powerpc_quicc2pro quicc2pro_serial_driver }
+    hardware
+    directory	      devs/serial/quicc2pro
+    script	      ser_quicc2pro.cdl	
+    description       "PowerPC MPC8XXX (QUICC-II) serial device drivers"
+}
